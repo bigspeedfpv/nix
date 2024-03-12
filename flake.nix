@@ -78,5 +78,8 @@
 	            specialArgs = { inherit inputs; };
             };
         };
+
+        formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+        formatter.aarch64-darwin = nixpkgs.legacyPackages.x86_64-linux.alejandra;
     };
 }
