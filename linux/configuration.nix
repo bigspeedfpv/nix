@@ -20,7 +20,5 @@
 
     services.openssh.enable = true;
 
-    programs.bash.enable = true;
-
     system.stateVersion = "23.11";
 }
