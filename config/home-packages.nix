@@ -1,13 +1,14 @@
-pkgs: with pkgs; [
-    fzf
-    ripgrep
-    eza
-    zoxide
-    jq
-    neofetch
-    tmux
-    bat
+pkgs:
+with pkgs; [
+  fzf
+  ripgrep
+  eza
+  zoxide
+  jq
+  neofetch
+  tmux
+  bat
 
-    gitAndTools.git
-    gitAndTools.gh
+  gitAndTools.git
+  gitAndTools.gh
 ]

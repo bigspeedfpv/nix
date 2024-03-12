@@ -14,73 +14,67 @@
     agenix.inputs.nixpkgs.follows = "nixpkgs";
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+
+    alejandra.url = "github:kamadorueda/alejandra/3.0.0";
+    alejandra.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ nixpkgs, nix-darwin, home-manager, agenix, ... }:
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#macioli
-    let
-        user = "andy";
-
-        dotfiles = ./dotfiles;
-        secrets = ./secrets;
-
-        commonInherits = {
-            inherit (nixpkgs) lib;
-            inherit inputs nixpkgs home-manager nix-darwin;
-            inherit user secrets dotfiles;
-        };
-    in
-    {
-        nixosConfigurations = {
-            nixos = nixpkgs.lib.nixosSystem {
-                system = "x86_64-linux";
-                modules = [
-                    ./configuration.nix
-                    ./linux/configuration.nix
-                    agenix.nixosModules.default
-                    home-manager.nixosModules.home-manager
-                    {
-                        nixpkgs.overlays = [ inputs.neovim-nightly-overlay.overlay ];
-                        home-manager.useGlobalPkgs = true;
-                        home-manager.useUserPackages = true;
-                        home-manager.users.andy = {
-                            imports = [
-                                ./home.nix
-                                ./linux/home.nix
-                            ];
-                        };
-                    }
-                ];
-                specialArgs = { inherit inputs; };
+  outputs = inputs @ {
+    nixpkgs,
+    nix-darwin,
+    home-manager,
+    agenix,
+    ...
+  }:
+  # Build darwin flake using:
+  # $ darwin-rebuild build --flake .#macioli
+  {
+    nixosConfigurations = {
+      nixos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./configuration.nix
+          ./linux/configuration.nix
+          agenix.nixosModules.default
+          home-manager.nixosModules.home-manager
+          {
+            nixpkgs.overlays = [inputs.neovim-nightly-overlay.overlay];
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.andy = {
+              imports = [
+                ./home.nix
+                ./linux/home.nix
+              ];
             };
-        };
-
-        darwinConfigurations = {
-            macioli = nix-darwin.lib.darwinSystem {
-                system = "aarch64-darwin";
-                modules = [
-                    ./configuration.nix
-                    ./darwin/configuration.nix
-                    agenix.darwinModules.default
-                    home-manager.darwinModules.home-manager
-                    {
-                        nixpkgs.overlays = [ inputs.neovim-nightly-overlay.overlay ];
-                        home-manager.useGlobalPkgs = true;
-                        home-manager.useUserPackages = true;
-                        home-manager.users.andy = {
-                            imports = [
-                                ./home.nix
-                                ./darwin/home.nix
-                            ];
-                        };
-                    }
-                ];
-	            specialArgs = { inherit inputs; };
-            };
-        };
-
-        formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
-        formatter.aarch64-darwin = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+          }
+        ];
+        specialArgs = {inherit inputs;};
+      };
     };
+
+    darwinConfigurations = {
+      macioli = nix-darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        modules = [
+          ./configuration.nix
+          ./darwin/configuration.nix
+          agenix.darwinModules.default
+          home-manager.darwinModules.home-manager
+          {
+            nixpkgs.overlays = [inputs.neovim-nightly-overlay.overlay];
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.andy = {
+              imports = [
+                ./home.nix
+                ./darwin/home.nix
+              ];
+            };
+          }
+        ];
+        specialArgs = {inherit inputs;};
+      };
+    };
+  };
 }
