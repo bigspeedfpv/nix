@@ -12,13 +12,18 @@
     users.users.andy = {
         isNormalUser = true;
         extraGroups = ["wheel"];
+        openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOKsuRGxm3xKVrfclQDfv1Q4OvUFCBwO+Gm97qm8LKVo" ];
     };
 
     environment.systemPackages = with pkgs; import ../config/global-packages.nix pkgs inputs ++ [
         wget
     ];
 
-    services.openssh.enable = true;
+    services.openssh = {
+        enable = true;
+        settings.PasswordAuthentication = false;
+        settings.KbdInteractiveAuthentication = false;
+    };
 
     system.stateVersion = "23.11";
 }
