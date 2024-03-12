@@ -14,5 +14,7 @@
     ];
   };
 
+  environment.pathsToLink = [ "/share/bash-completion" ];
+
   nixpkgs.config.allowUnfree = true;
 }
