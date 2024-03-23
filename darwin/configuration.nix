@@ -11,6 +11,8 @@
   environment.shells = [pkgs.fish];
   environment.loginShell = pkgs.fish;
 
+  environment.darwinConfig = "$HOME/.config/nix-darwin/darwin/configuration.nix";
+
   users.users.andy = {
     home = "/Users/andy";
     shell = pkgs.fish;

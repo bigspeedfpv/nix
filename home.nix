@@ -12,23 +12,24 @@
       enableFishIntegration = true;
     };
 
+    bat = {
+      enable = true;
+      config.theme = "catppuccin";
+      themes.catppuccin = {
+        src = pkgs.fetchFromGitHub {
+          owner = "catppuccin";
+          repo = "bat";
+          rev = "b19bea35a85a32294ac4732cad5b0dc6495bed32";
+          hash = "sha256-POoW2sEM6jiymbb+W/9DKIjDM1Buu1HAmrNP0yC2JPg=";
+        };
+        file = "themes/Catppuccin Mocha.tmTheme";
+      };
+    };
+
     git = {
       enable = true;
       userName = "Andrew Brower";
       userEmail = "bigspeedfpv@gmail.com";
-    };
-
-    kitty = {
-      enable = true;
-      theme = "Catppuccin-Mocha";
-      font = {
-        name = "Geist Mono Semibold";
-        size = 13.5;
-      };
-      extraConfig = ''
-        macos_titlebar_color background
-        macos_option_as_alt yes
-      '';
     };
 
     tmux = {
