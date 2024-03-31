@@ -33,5 +33,7 @@
     settings.KbdInteractiveAuthentication = false;
   };
 
+  services.postgresql.enable = true;
+
   system.stateVersion = "23.11";
 }
