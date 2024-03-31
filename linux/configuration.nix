@@ -33,10 +33,5 @@
     settings.KbdInteractiveAuthentication = false;
   };
 
-  services.postgresql = {
-    enable = true;
-    enableTCPIP = true;
-  };
-
   system.stateVersion = "23.11";
 }
