@@ -7,6 +7,9 @@
       qemu
       podman
       podman-compose
+      lazygit
+      ripgrep
+      fd
     ];
 
   programs = {

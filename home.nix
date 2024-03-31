@@ -40,6 +40,7 @@
           extraConfig = ''
             set -g @catppuccin-flavor 'mocha'
             set -g @catppuccin_status_modules_right "application session date_time battery"
+            set -s escape-time 0
           '';
         }
         tmuxPlugins.battery

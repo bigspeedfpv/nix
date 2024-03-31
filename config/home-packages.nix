@@ -9,6 +9,8 @@ with pkgs; [
   tmux
   bat
 
+  nodejs_20 # tsserver compat :(
+
   gitAndTools.git
   gitAndTools.gh
 ]

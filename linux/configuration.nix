@@ -23,6 +23,7 @@
   environment.systemPackages = with pkgs;
     import ../config/global-packages.nix pkgs inputs
     ++ [
+      clangStdenv
       wget
     ];
 
