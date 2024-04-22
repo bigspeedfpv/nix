@@ -10,6 +10,7 @@
       lazygit
       ripgrep
       fd
+      emacs
     ];
 
   programs = {
@@ -30,6 +31,7 @@
       extraConfig = ''
         macos_titlebar_color background
         macos_option_as_alt yes
+        confirm_os_window_close 0
       '';
     };
 

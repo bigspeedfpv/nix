@@ -44,6 +44,8 @@
           '';
         }
         tmuxPlugins.battery
+
+        tmuxPlugins.resurrect
       ];
     };
   };
