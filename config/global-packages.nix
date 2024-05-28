@@ -1,7 +1,7 @@
 pkgs: inputs:
 with pkgs; [
   btop
-  neovim-nightly
+  neovim
   git
   cachix
   inputs.agenix.packages."${system}".default

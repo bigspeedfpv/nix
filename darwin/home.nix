@@ -11,6 +11,9 @@
       ripgrep
       fd
       emacs
+
+      p4
+      platformio
     ];
 
   programs = {
@@ -33,6 +36,12 @@
         macos_option_as_alt yes
         confirm_os_window_close 0
       '';
+    };
+
+    direnv = {
+      enable = true;
+      enableBashIntegration = true; # see note on other shells below
+      nix-direnv.enable = true;
     };
 
     git.signing = {

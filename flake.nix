@@ -38,7 +38,7 @@
           agenix.nixosModules.default
           home-manager.nixosModules.home-manager
           {
-            nixpkgs.overlays = [inputs.neovim-nightly-overlay.overlay];
+            nixpkgs.overlays = [inputs.neovim-nightly-overlay.overlays.default];
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.andy = {
@@ -62,7 +62,7 @@
           agenix.darwinModules.default
           home-manager.darwinModules.home-manager
           {
-            nixpkgs.overlays = [inputs.neovim-nightly-overlay.overlay];
+            nixpkgs.overlays = [inputs.neovim-nightly-overlay.overlays.default];
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.andy = {
