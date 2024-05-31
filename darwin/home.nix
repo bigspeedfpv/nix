@@ -1,4 +1,7 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  ...
+}: {
   home.packages = with pkgs;
     import ../config/home-packages.nix pkgs
     ++ [
@@ -14,6 +17,8 @@
 
       p4
       platformio
+
+      nil
     ];
 
   programs = {

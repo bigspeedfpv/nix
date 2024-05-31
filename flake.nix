@@ -13,8 +13,6 @@
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
 
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -38,7 +36,6 @@
           agenix.nixosModules.default
           home-manager.nixosModules.home-manager
           {
-            nixpkgs.overlays = [inputs.neovim-nightly-overlay.overlays.default];
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.andy = {
@@ -62,7 +59,6 @@
           agenix.darwinModules.default
           home-manager.darwinModules.home-manager
           {
-            nixpkgs.overlays = [inputs.neovim-nightly-overlay.overlays.default];
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.andy = {
@@ -73,7 +69,9 @@
             };
           }
         ];
-        specialArgs = {inherit inputs;};
+        specialArgs = {
+          inherit inputs;
+        };
       };
     };
   };
