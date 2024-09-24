@@ -1,4 +1,4 @@
-pkgs:
+pkgs: inputs:
 with pkgs; [
   fzf
   ripgrep
@@ -13,4 +13,7 @@ with pkgs; [
 
   gitAndTools.git
   gitAndTools.gh
+
+  inputs.fh.packages."${system}".default
+  inputs.pow.packages."${system}".default
 ]

@@ -1,9 +1,10 @@
 {
   pkgs,
+  inputs,
   ...
 }: {
   home.packages = with pkgs;
-    import ../config/home-packages.nix pkgs
+    import ../config/home-packages.nix pkgs inputs
     ++ [
       kitty
       direnv
@@ -13,7 +14,7 @@
       lazygit
       ripgrep
       fd
-      emacs
+      helix
 
       p4
       platformio
@@ -33,7 +34,7 @@
       enable = true;
       theme = "Catppuccin-Mocha";
       font = {
-        name = "Comic Code Ligatures";
+        name = "Comic Code Ligatures Semibold";
         size = 13.5;
       };
       extraConfig = ''

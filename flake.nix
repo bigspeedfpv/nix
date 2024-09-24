@@ -15,6 +15,12 @@
 
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
+
+    fh.url = "https://flakehub.com/f/DeterminateSystems/fh/*.tar.gz";
+    fh.inputs.nixpkgs.follows = "nixpkgs";
+
+    pow.url = "git+ssh://git@github.com/bigspeedfpv/pow";
+    pow.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs @ {
@@ -36,8 +42,12 @@
           agenix.nixosModules.default
           home-manager.nixosModules.home-manager
           {
+            home-manager.backupFileExtension = "backup";
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {
+                inherit inputs;
+            };
             home-manager.users.andy = {
               imports = [
                 ./home.nix
@@ -59,8 +69,12 @@
           agenix.darwinModules.default
           home-manager.darwinModules.home-manager
           {
+            home-manager.backupFileExtension = "backup";
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {
+                inherit inputs;
+            };
             home-manager.users.andy = {
               imports = [
                 ./home.nix
@@ -74,5 +88,10 @@
         };
       };
     };
+  };
+
+  nixConfig = {
+    upgrade-nix-store-path-url = "https://install.determinate.systems/nix-upgrade/stable/universal";
+    bash-prompt-prefix = "❄️  $name\040";
   };
 }
