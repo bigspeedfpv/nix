@@ -25,7 +25,7 @@
         format = ssh
 
       [gpg "ssh"]
-        program = "/opt/1Password/op-ssh-sign"
+        program = "/etc/profiles/per-user/andy/bin/op-ssh-sign"
 
       [commit]
         gpgsign = true
