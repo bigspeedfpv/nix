@@ -14,6 +14,8 @@ with pkgs; [
   gitAndTools.git
   gitAndTools.gh
 
+  modrinth-app
+
   inputs.fh.packages."${system}".default
-  inputs.pow.packages."${system}".default
+  # inputs.pow.packages."${system}".default
 ]

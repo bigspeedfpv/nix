@@ -19,8 +19,8 @@
     fh.url = "https://flakehub.com/f/DeterminateSystems/fh/*.tar.gz";
     fh.inputs.nixpkgs.follows = "nixpkgs";
 
-    pow.url = "git+ssh://git@github.com/bigspeedfpv/pow";
-    pow.inputs.nixpkgs.follows = "nixpkgs";
+    # pow.url = "git+ssh://git@github.com/bigspeedfpv/pow";
+    # pow.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs @ {
@@ -34,11 +34,11 @@
   # $ darwin-rebuild build --flake .#macioli
   {
     nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
+      xoog = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./configuration.nix
-          ./linux/configuration.nix
+          ./xoog/configuration.nix
           agenix.nixosModules.default
           home-manager.nixosModules.home-manager
           {
@@ -46,12 +46,12 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = {
-                inherit inputs;
+              inherit inputs;
             };
             home-manager.users.andy = {
               imports = [
                 ./home.nix
-                ./linux/home.nix
+                ./xoog/home.nix
               ];
             };
           }
@@ -73,7 +73,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = {
-                inherit inputs;
+              inherit inputs;
             };
             home-manager.users.andy = {
               imports = [
