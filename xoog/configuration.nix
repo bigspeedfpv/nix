@@ -113,4 +113,6 @@
 		enable = true;
 		polkitPolicyOwners = ["andy"];
 	};
+
+	programs.ssh.askPassword = "";
 }
