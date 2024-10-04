@@ -41,7 +41,22 @@
 
   environment.systemPackages = with pkgs;
     import ../config/global-packages.nix pkgs inputs
-    ++ [wget];
+    ++ [
+      wget
+      pulseaudio
+      corretto21
+      corretto17
+			lutris
+			wineWowPackages.stable
+    ]
+    ++ (with gnomeExtensions; [
+      blur-my-shell
+    ]);
+
+  services.pipewire.pulse.enable = true;
+
+  services.tailscale.enable = true;
+  services.tailscale.useRoutingFeatures = "both";
 
   services.openssh = {
     enable = true;
@@ -54,6 +69,12 @@
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
   };
+
+	services.sunshine = {
+		enable = true;
+		package = pkgs.sunshine.override { cudaSupport = true; };
+		capSysAdmin = true;
+	};
 
   environment.gnome.excludePackages = with pkgs; [
     gnome-photos
@@ -73,5 +94,23 @@
     atomix
   ];
 
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+  };
+
   system.stateVersion = "23.11";
+
+  boot.kernelModules = ["v4l2loopback"];
+  boot.extraModulePackages = [pkgs.linuxPackages.v4l2loopback];
+
+	programs._1password = {
+    enable = true;
+  };
+
+	programs._1password-gui = {
+		enable = true;
+		polkitPolicyOwners = ["andy"];
+	};
 }
