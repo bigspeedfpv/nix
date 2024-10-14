@@ -29,11 +29,6 @@
       shellInit = ''
         direnv hook fish | source
       '';
-      interactiveShellInit = ''
-        function fish_right_prompt
-          pow $status
-        end
-      '';
     };
 
     kitty = {

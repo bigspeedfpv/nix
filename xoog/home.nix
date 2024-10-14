@@ -16,6 +16,8 @@
 
       obs-studio
 
+      modrinth-app
+
       easyeffects
 
       steam

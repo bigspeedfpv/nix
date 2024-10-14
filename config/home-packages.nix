@@ -16,8 +16,6 @@ with pkgs; [
   gitAndTools.git
   gitAndTools.gh
 
-  modrinth-app
-
   lazygit
 
   inputs.fh.packages."${system}".default
