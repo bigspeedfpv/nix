@@ -9,6 +9,8 @@
       _1password
       _1password-gui
 
+      gnome-tweaks
+
       firefox
       vesktop
 
@@ -17,7 +19,37 @@
       easyeffects
 
       steam
+      heroic
+
+      spotify
+      neovim
     ];
+
+  programs.fish = {
+    enable = true;
+    shellInit = ''
+      direnv hook fish | source
+    '';
+  };
+
+  programs.kitty = {
+    enable = true;
+    font = {
+      name = "Comic Code Ligatures Semibold";
+      size = 11;
+    };
+  };
+
+  programs.zellij.enableFishIntegration = true;
+
+  catppuccin.enable = true;
+  catppuccin.flavor = "mocha";
+
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true; # see note on other shells below
+    nix-direnv.enable = true;
+  };
 
   programs.git = {
     enable = true;
@@ -39,18 +71,17 @@
     '';
   };
 
-  programs.neovim.enable = true;
   programs.neovim.defaultEditor = true;
 
-	dconf = {
-		enable = true;
-		settings = {
-			"org/gnome/shell" = {
-				disable-user-extensions = false;
-				enabled-extensions = with pkgs.gnomeExtensions; [
-					blur-my-shell.extensionUuid
-				];
-			};
-		};
-	};
+  dconf = {
+    enable = true;
+    settings = {
+      "org/gnome/shell" = {
+        disable-user-extensions = false;
+        enabled-extensions = with pkgs.gnomeExtensions; [
+          blur-my-shell.extensionUuid
+        ];
+      };
+    };
+  };
 }

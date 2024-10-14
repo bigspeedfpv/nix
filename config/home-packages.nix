@@ -16,6 +16,8 @@ with pkgs; [
 
   modrinth-app
 
+  lazygit
+
   inputs.fh.packages."${system}".default
   # inputs.pow.packages."${system}".default
 ]

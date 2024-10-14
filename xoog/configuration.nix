@@ -37,17 +37,19 @@
     isNormalUser = true;
     extraGroups = ["wheel"];
     openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOKsuRGxm3xKVrfclQDfv1Q4OvUFCBwO+Gm97qm8LKVo"];
+    shell = pkgs.fish;
   };
 
   environment.systemPackages = with pkgs;
     import ../config/global-packages.nix pkgs inputs
     ++ [
+      clang
       wget
       pulseaudio
       corretto21
       corretto17
-			lutris
-			wineWowPackages.stable
+      lutris
+      wineWowPackages.stable
     ]
     ++ (with gnomeExtensions; [
       blur-my-shell
@@ -70,11 +72,13 @@
     desktopManager.gnome.enable = true;
   };
 
-	services.sunshine = {
-		enable = true;
-		package = pkgs.sunshine.override { cudaSupport = true; };
-		capSysAdmin = true;
-	};
+  services.sunshine = {
+    enable = true;
+    autoStart = true;
+    package = pkgs.sunshine.override {cudaSupport = true;};
+    capSysAdmin = true;
+    openFirewall = true;
+  };
 
   environment.gnome.excludePackages = with pkgs; [
     gnome-photos
@@ -105,14 +109,16 @@
   boot.kernelModules = ["v4l2loopback"];
   boot.extraModulePackages = [pkgs.linuxPackages.v4l2loopback];
 
-	programs._1password = {
+  programs._1password = {
     enable = true;
   };
 
-	programs._1password-gui = {
-		enable = true;
-		polkitPolicyOwners = ["andy"];
-	};
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = ["andy"];
+  };
 
-	programs.ssh.askPassword = "";
+  programs.ssh.askPassword = "";
+
+  programs.fish.enable = true;
 }

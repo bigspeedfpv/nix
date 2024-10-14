@@ -21,6 +21,8 @@
 
     # pow.url = "git+ssh://git@github.com/bigspeedfpv/pow";
     # pow.inputs.nixpkgs.follows = "nixpkgs";
+
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs = inputs @ {
@@ -28,6 +30,7 @@
     nix-darwin,
     home-manager,
     agenix,
+    catppuccin,
     ...
   }:
   # Build darwin flake using:
@@ -40,6 +43,7 @@
           ./configuration.nix
           ./xoog/configuration.nix
           agenix.nixosModules.default
+          catppuccin.nixosModules.catppuccin
           home-manager.nixosModules.home-manager
           {
             home-manager.backupFileExtension = "backup";
@@ -52,6 +56,7 @@
               imports = [
                 ./home.nix
                 ./xoog/home.nix
+                catppuccin.homeManagerModules.catppuccin
               ];
             };
           }
