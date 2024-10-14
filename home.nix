@@ -39,6 +39,20 @@
     #   ];
     # };
 
+    ssh = {
+      enable = true;
+      matchBlocks = {
+        "andy-vps" = {
+          hostname = "andy-vps";
+          forwardAgent = true;
+        };
+        "xoog" = {
+          hostname = "xoog";
+          forwardAgent = true;
+        };
+      };
+    };
+
     zellij = {
       enable = true;
     };

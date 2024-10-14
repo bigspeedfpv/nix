@@ -19,6 +19,8 @@
       platformio
 
       nil
+
+      vlc-bin-universal
     ];
 
   programs = {
@@ -26,6 +28,11 @@
       enable = true;
       shellInit = ''
         direnv hook fish | source
+      '';
+      interactiveShellInit = ''
+        function fish_right_prompt
+          pow $status
+        end
       '';
     };
 
@@ -58,5 +65,10 @@
       gpg.format = "ssh";
       gpg.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
     };
+
+    ssh.extraConfig = ''
+      Host *
+	      IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+    '';
   };
 }

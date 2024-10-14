@@ -260,6 +260,28 @@
         "type": "github"
       }
     },
+    "pow": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-overlay": "rust-overlay"
+      },
+      "locked": {
+        "lastModified": 1727165280,
+        "narHash": "sha256-6EUOsTj6PV0TaO2uvDkZBXQn75rRxwtAsWaVujJ9/5I=",
+        "ref": "refs/heads/main",
+        "rev": "6d3c70af1b5c43cc0a1be6095508c81c6df862f3",
+        "revCount": 5,
+        "type": "git",
+        "url": "ssh://git@github.com/bigspeedfpv/pow"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/bigspeedfpv/pow"
+      }
+    },
     "root": {
       "inputs": {
         "agenix": "agenix",

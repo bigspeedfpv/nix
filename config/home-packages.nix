@@ -9,6 +9,8 @@ with pkgs; [
   tmux
   bat
 
+  moonlight-qt
+
   nodejs_20 # tsserver compat :(
 
   gitAndTools.git
