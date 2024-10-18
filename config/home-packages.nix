@@ -14,12 +14,12 @@ with pkgs; [
   podman
   podman-compose
 
-  moonlight-qt
-
   gitAndTools.git
   gitAndTools.gh
 
   lazygit
+
+  spotify
 
   inputs.fh.packages."${system}".default
 ]

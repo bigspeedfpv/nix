@@ -4,6 +4,7 @@ with pkgs; [
   cachix
   git
   neovim
+  killall
 
   inputs.agenix.packages."${system}".default
   inputs.alejandra.defaultPackage.${system}

@@ -3,6 +3,10 @@
   inputs,
   ...
 }: {
+  imports = [
+    ./dock
+  ];
+
   home.packages = with pkgs;
     import ../config/home-packages.nix pkgs inputs
     ++ [
@@ -42,5 +46,13 @@
       Host *
        IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
     '';
+  };
+
+  local.dock = {
+    enable = true;
+    entries = with pkgs; [
+      {path = "/Applications/Safari.app/";}
+      {path = "${spotify}/Applications/Spotify.app";}
+    ];
   };
 }
