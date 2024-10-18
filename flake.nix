@@ -19,14 +19,16 @@
     fh.url = "https://flakehub.com/f/DeterminateSystems/fh/*.tar.gz";
     fh.inputs.nixpkgs.follows = "nixpkgs";
 
-    # pow.url = "git+ssh://git@github.com/bigspeedfpv/pow";
-    # pow.inputs.nixpkgs.follows = "nixpkgs";
-
     catppuccin.url = "github:catppuccin/nix";
 
     hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.inputs.nixpkgs.follows = "nixpkgs";
 
     anyrun.url = "github:anyrun-org/anyrun";
+    anyrun.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs @ {
@@ -35,11 +37,9 @@
     home-manager,
     agenix,
     catppuccin,
+    nix-index-database,
     ...
-  }:
-  # Build darwin flake using:
-  # $ darwin-rebuild build --flake .#macioli
-  {
+  }: {
     nixosConfigurations = {
       xoog = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -61,6 +61,7 @@
                 ./home.nix
                 ./xoog/home.nix
                 catppuccin.homeManagerModules.catppuccin
+                nix-index-database.hmModules.nix-index
               ];
             };
           }
@@ -88,6 +89,8 @@
               imports = [
                 ./home.nix
                 ./darwin/home.nix
+                catppuccin.homeManagerModules.catppuccin
+                nix-index-database.hmModules.nix-index
               ];
             };
           }

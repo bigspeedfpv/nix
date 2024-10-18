@@ -36,26 +36,6 @@ in {
       neovim
     ];
 
-  programs.fish = {
-    enable = true;
-    shellInit = ''
-      direnv hook fish | source
-    '';
-  };
-
-  programs.kitty = {
-    enable = true;
-    font = {
-      name = "Comic Code Ligatures Semibold";
-      size = 11;
-    };
-  };
-
-  programs.zellij.enableFishIntegration = true;
-
-  catppuccin.enable = true;
-  catppuccin.flavor = "mocha";
-
   programs.direnv = {
     enable = true;
     enableBashIntegration = true; # see note on other shells below
@@ -102,7 +82,7 @@ in {
     settings = {
       "$mod" = "SUPER";
 
-      monitor = [ 
+      monitor = [
         "DP-1, preferred, 0x0, 2"
         "HDMI-A-1, preferred, 1920x0, 1"
       ];

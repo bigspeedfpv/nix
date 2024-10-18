@@ -6,7 +6,6 @@
   home.packages = with pkgs;
     import ../config/home-packages.nix pkgs inputs
     ++ [
-      kitty
       direnv
       qemu
       podman
@@ -32,16 +31,11 @@
     };
 
     kitty = {
-      enable = true;
-      theme = "Catppuccin-Mocha";
-      font = {
-        name = "Comic Code Ligatures Semibold";
-        size = 13.5;
-      };
       extraConfig = ''
+        text_composition_strategy 2.0 30
+        macos_option_as_alt left
+        font_size 12
         macos_titlebar_color background
-        macos_option_as_alt yes
-        confirm_os_window_close 0
       '';
     };
 
@@ -63,7 +57,7 @@
 
     ssh.extraConfig = ''
       Host *
-	      IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+       IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
     '';
   };
 }

@@ -10,21 +10,14 @@
   services.nix-daemon.enable = true;
   nix.useDaemon = true;
 
-  environment.shells = [pkgs.fish];
-  environment.loginShell = pkgs.fish;
+  nixpkgs.hostPlatform = "aarch64-darwin";
 
-  environment.darwinConfig = "$HOME/.config/nix-darwin/darwin/configuration.nix";
+  environment.systemPackages = import ../config/global-packages.nix pkgs inputs;
 
-  users.users.andy = {
-    home = "/Users/andy";
-    shell = pkgs.fish;
-  };
+  users.users.andy.home = "/Users/andy";
 
-  programs.fish.enable = true;
-
-  environment.systemPackages = with pkgs;
-    import ../config/global-packages.nix pkgs inputs
-    ++ [
-      fish
-    ];
+  # since users.users.andy is bad in nix-darwin, country girls make do <3
+  system.activationScripts.preUserActivation.text = ''
+    sudo dscl . -create /Users/andy UserShell /run/current-system/sw/bin/fish
+  '';
 }

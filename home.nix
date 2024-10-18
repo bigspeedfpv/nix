@@ -4,7 +4,33 @@
   programs = {
     home-manager.enable = true;
 
+    fish = {
+      enable = true;
+      shellInit = ''
+        direnv hook fish | source
+      '';
+    };
+
     bash.enable = true;
+
+    nix-index-database.comma.enable = true;
+
+    kitty = {
+      enable = true;
+
+      extraConfig = ''
+        font_family Comic Code Semibold
+        bold_font Comic Code Bold
+        italic_font Comic Code Italic
+        bold_italic_font Comic Code Bold Italic
+      '';
+
+      shellIntegration = {
+        enableBashIntegration = true;
+        enableZshIntegration = true;
+        enableFishIntegration = true;
+      };
+    };
 
     zoxide = {
       enable = true;
@@ -22,23 +48,6 @@
       userEmail = "bigspeedfpv@gmail.com";
     };
 
-    # tmux = {
-    #   enable = true;
-    #   plugins = with pkgs; [
-    #     {
-    #       plugin = tmuxPlugins.catppuccin;
-    #       extraConfig = ''
-    #         set -g @catppuccin-flavor 'mocha'
-    #         set -g @catppuccin_status_modules_right "application session date_time battery"
-    #         set -s escape-time 0
-    #       '';
-    #     }
-    #     tmuxPlugins.battery
-    #
-    #     tmuxPlugins.resurrect
-    #   ];
-    # };
-
     ssh = {
       enable = true;
       matchBlocks = {
@@ -55,8 +64,19 @@
 
     zellij = {
       enable = true;
+      enableFishIntegration = true;
+    };
+
+    nix-index = {
+      enable = true;
+      enableFishIntegration = true;
+      enableZshIntegration = true;
+      enableBashIntegration = true;
     };
   };
+
+  catppuccin.enable = true;
+  catppuccin.flavor = "mocha";
 
   home.shellAliases = {
     search = "fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}' | xargs nvim";
