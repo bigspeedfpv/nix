@@ -23,6 +23,10 @@
     # pow.inputs.nixpkgs.follows = "nixpkgs";
 
     catppuccin.url = "github:catppuccin/nix";
+
+    hyprland.url = "github:hyprwm/Hyprland";
+
+    anyrun.url = "github:anyrun-org/anyrun";
   };
 
   outputs = inputs @ {

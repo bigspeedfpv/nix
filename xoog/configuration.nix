@@ -40,6 +40,8 @@
     shell = pkgs.fish;
   };
 
+  environment.variables.NIXOS_OZONE_WL = "1";
+
   environment.systemPackages = with pkgs;
     import ../config/global-packages.nix pkgs inputs
     ++ [
@@ -102,12 +104,17 @@
     enable = true;
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
+    gamescopeSession.enable = true;
+  };
+
+  programs.gamescope.enable = true;
+
+  programs.gamemode = {
+    enable = true;
+    settings.general.renice = 20;
   };
 
   system.stateVersion = "23.11";
-
-  boot.kernelModules = ["v4l2loopback"];
-  boot.extraModulePackages = [pkgs.linuxPackages.v4l2loopback];
 
   programs._1password = {
     enable = true;
@@ -121,4 +128,18 @@
   programs.ssh.askPassword = "";
 
   programs.fish.enable = true;
+
+  programs.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+  };
+
+  nix.settings = {
+    extra-substituters = ["https://hyprland.cachix.org" "https://anyrun.cachix.org"];
+    extra-trusted-public-keys = [
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
+    ];
+  };
 }
