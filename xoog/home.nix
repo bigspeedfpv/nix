@@ -36,12 +36,6 @@ in {
       neovim
     ];
 
-  programs.direnv = {
-    enable = true;
-    enableBashIntegration = true; # see note on other shells below
-    nix-direnv.enable = true;
-  };
-
   programs.git = {
     enable = true;
     userName = "Andrew Brower";

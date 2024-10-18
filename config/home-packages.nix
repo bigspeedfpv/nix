@@ -8,6 +8,12 @@ with pkgs; [
   neofetch
   bat
 
+  nil
+
+  qemu
+  podman
+  podman-compose
+
   moonlight-qt
 
   gitAndTools.git

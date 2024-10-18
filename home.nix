@@ -6,9 +6,6 @@
 
     fish = {
       enable = true;
-      shellInit = ''
-        direnv hook fish | source
-      '';
     };
 
     bash.enable = true;
@@ -72,6 +69,12 @@
       enableFishIntegration = true;
       enableZshIntegration = true;
       enableBashIntegration = true;
+    };
+
+    direnv = {
+      enable = true;
+      enableBashIntegration = true;
+      nix-direnv.enable = true;
     };
   };
 

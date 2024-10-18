@@ -6,30 +6,17 @@
   home.packages = with pkgs;
     import ../config/home-packages.nix pkgs inputs
     ++ [
-      direnv
-      qemu
-      podman
-      podman-compose
-      ripgrep
       fd
       helix
 
-      p4
-      platformio
+      raycast
 
-      nil
+      platformio
 
       vlc-bin-universal
     ];
 
   programs = {
-    fish = {
-      enable = true;
-      shellInit = ''
-        direnv hook fish | source
-      '';
-    };
-
     kitty = {
       extraConfig = ''
         text_composition_strategy 2.0 30
@@ -39,20 +26,16 @@
       '';
     };
 
-    direnv = {
-      enable = true;
-      enableBashIntegration = true; # see note on other shells below
-      nix-direnv.enable = true;
-    };
+    git = {
+      signing = {
+        key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAxWL2XZtoicDaL/UlZQGTRbs2iLN/Vpivv0nOZOMoII";
+        signByDefault = true;
+      };
 
-    git.signing = {
-      key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAxWL2XZtoicDaL/UlZQGTRbs2iLN/Vpivv0nOZOMoII";
-      signByDefault = true;
-    };
-
-    git.extraConfig = {
-      gpg.format = "ssh";
-      gpg.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+      extraConfig = {
+        gpg.format = "ssh";
+        gpg.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+      };
     };
 
     ssh.extraConfig = ''
