@@ -26,8 +26,13 @@
     })
   ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.enable = lib.mkForce false;
+  # boot.loader.efi.canTouchEfiVariables = true;
+
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/etc/secureboot";
+  };
 
   time.timeZone = "America/New_York";
 
@@ -52,6 +57,7 @@
       corretto17
       lutris
       wineWowPackages.stable
+      sbctl
     ]
     ++ (with gnomeExtensions; [
       blur-my-shell
@@ -59,8 +65,11 @@
 
   services.pipewire.pulse.enable = true;
 
-  services.tailscale.enable = true;
-  services.tailscale.useRoutingFeatures = "both";
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "both";
+    extraUpFlags = ["--advertise-exit-node"];
+  };
 
   services.openssh = {
     enable = true;
@@ -133,6 +142,11 @@
     enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 
   nix.settings = {

@@ -59,9 +59,15 @@
       };
     };
 
-    zellij = {
+    tmux = {
       enable = true;
-      enableFishIntegration = true;
+      plugins = with pkgs; [
+        tmuxPlugins.battery
+        tmuxPlugins.resurrect
+      ];
+      extraConfig = ''
+        set -s escape-time 0
+      '';
     };
 
     nix-index = {

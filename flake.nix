@@ -29,6 +29,9 @@
 
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+
+    lanzaboote.url = "github:nix-community/lanzaboote/v0.4.1";
+    lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs @ {
@@ -38,6 +41,7 @@
     agenix,
     catppuccin,
     nix-index-database,
+    lanzaboote,
     ...
   }: {
     nixosConfigurations = {
@@ -48,6 +52,7 @@
           ./xoog/configuration.nix
           agenix.nixosModules.default
           catppuccin.nixosModules.catppuccin
+          lanzaboote.nixosModules.lanzaboote
           home-manager.nixosModules.home-manager
           {
             home-manager.backupFileExtension = "backup";

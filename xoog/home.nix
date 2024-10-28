@@ -25,28 +25,24 @@ in {
 
       firefox
 
+      modrinth-app
+
+      grimblast
+
       steam
       heroic
     ];
 
   programs.git = {
-    enable = true;
-    userName = "Andrew Brower";
-    userEmail = "bigspeedfpv@gmail.com";
+    signing = {
+      key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAxWL2XZtoicDaL/UlZQGTRbs2iLN/Vpivv0nOZOMoII";
+      signByDefault = true;
+    };
 
-    extraConfig = ''
-      [user]
-        signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAxWL2XZtoicDaL/UlZQGTRbs2iLN/Vpivv0nOZOMoII
-
-      [gpg]
-        format = ssh
-
-      [gpg "ssh"]
-        program = "/etc/profiles/per-user/andy/bin/op-ssh-sign"
-
-      [commit]
-        gpgsign = true
-    '';
+    extraConfig = {
+      gpg.format = "ssh";
+      gpg.ssh.program = "op-ssh-sign";
+    };
   };
 
   programs.neovim.defaultEditor = true;
@@ -135,7 +131,8 @@ in {
       general.allow_tearing = true;
       windowrulev2 = [
         "immediate, class:^(cs2)$"
-        "immediate, class:^(Overwatch)"
+        "immediate, class:(Overwatch.exe)"
+        "immediate, class:^(Minecraft)"
       ];
     };
   };
