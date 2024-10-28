@@ -53,6 +53,8 @@
     entries = with pkgs; [
       {path = "/Applications/Safari.app/";}
       {path = "${spotify}/Applications/Spotify.app";}
+      {path = "${kitty}/Applications/Kitty.app";}
+      {path = "${vesktop}/Applications/Vesktop.app";}
     ];
   };
 }

@@ -20,20 +20,13 @@ in {
 
       gnome-tweaks
 
-      firefox
-      vesktop
-
+      easyeffects
       obs-studio
 
-      modrinth-app
-
-      easyeffects
+      firefox
 
       steam
       heroic
-
-      spotify
-      neovim
     ];
 
   programs.git = {

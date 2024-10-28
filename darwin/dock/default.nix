@@ -9,8 +9,8 @@ with lib; let
   cfg = config.local.dock;
   inherit (pkgs) stdenv killall;
   dockutil = pkgs.dockutil.override {
-      fromSource = false;
-    };
+    fromSource = false;
+  };
 in {
   options = {
     local.dock.enable = mkOption {
