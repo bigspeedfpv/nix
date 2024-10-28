@@ -45,7 +45,5 @@ in
 
     vesktop
 
-    jetbrains-toolbox
-
     inputs.fh.packages."${system}".default
   ]

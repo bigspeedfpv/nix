@@ -31,6 +31,8 @@ in {
 
       steam
       heroic
+
+      jetbrains-toolbox
     ];
 
   programs.git = {
