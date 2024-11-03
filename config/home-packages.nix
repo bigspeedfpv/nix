@@ -45,5 +45,5 @@ in
 
     vesktop
 
-    inputs.fh.packages."${system}".default
+    inputs.fh.packages.${system}.default
   ]

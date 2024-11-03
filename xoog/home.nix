@@ -33,6 +33,8 @@ in {
       heroic
 
       jetbrains-toolbox
+
+      inputs.ghostty.packages.${system}.default
     ];
 
   programs.git = {

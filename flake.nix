@@ -32,6 +32,8 @@
 
     lanzaboote.url = "github:nix-community/lanzaboote/v0.4.1";
     lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
+
+    ghostty.url = "git+ssh://git@github.com/ghostty-org/ghostty";
   };
 
   outputs = inputs @ {
