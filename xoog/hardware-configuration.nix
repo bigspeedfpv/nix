@@ -18,6 +18,9 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd" "v4l2loopback"];
   boot.extraModulePackages = [config.boot.kernelPackages.v4l2loopback];
+  boot.extraModprobeConfig = ''
+    options v4l2loopback exclusive_caps=1
+  '';
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/73da4f70-a28b-464c-857f-3a5ce2696679";
