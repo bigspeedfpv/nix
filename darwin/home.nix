@@ -57,7 +57,7 @@
     enable = true;
     entries = with pkgs; [
       {path = "/Applications/Safari.app/";}
-      {path = "${spotify}/Applications/Spotify.app";}
+      {path = "${inputs.spicetify-nix.legacyPackages.${pkgs.system}.spotify}/Applications/Spotify.app";}
       {path = "${kitty}/Applications/Kitty.app";}
       {path = "${vesktop}/Applications/Vesktop.app";}
     ];

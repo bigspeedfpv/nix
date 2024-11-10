@@ -12,7 +12,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_6_10;
+  boot.kernelPackages = pkgs.linuxPackages_6_11;
 
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
   boot.initrd.kernelModules = [];
@@ -57,7 +57,7 @@
   services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
     modesetting.enable = true;
     powerManagement.enable = true;
     powerManagement.finegrained = false;

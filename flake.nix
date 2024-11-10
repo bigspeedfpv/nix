@@ -34,6 +34,9 @@
     lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
 
     ghostty.url = "git+ssh://git@github.com/ghostty-org/ghostty";
+
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs @ {
@@ -44,6 +47,7 @@
     catppuccin,
     nix-index-database,
     lanzaboote,
+    spicetify-nix,
     ...
   }: {
     nixosConfigurations = {
@@ -69,6 +73,7 @@
                 ./xoog/home.nix
                 catppuccin.homeManagerModules.catppuccin
                 nix-index-database.hmModules.nix-index
+                spicetify-nix.homeManagerModules.default
               ];
             };
           }
@@ -98,6 +103,7 @@
                 ./darwin/home.nix
                 catppuccin.homeManagerModules.catppuccin
                 nix-index-database.hmModules.nix-index
+                spicetify-nix.homeManagerModules.default
               ];
             };
           }

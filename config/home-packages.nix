@@ -2,7 +2,7 @@ pkgs: inputs: let
   modrinth = let
     inherit (pkgs) stdenv lib;
   in
-    pkgs.modrinth-app.overrideAttrs (_: {
+    pkgs.modrinth-app-unwrapped.overrideAttrs (_: {
       broken = !stdenv.hostPlatform.isx86_64 && !stdenv.hostPlatform.isDarwin;
       postInstall =
         lib.optionalString stdenv.hostPlatform.isDarwin ''
@@ -39,9 +39,11 @@ in
     gitAndTools.git
     gitAndTools.gh
 
-    lazygit
+    modrinth
+    lunar-client
+    prismlauncher
 
-    spotify
+    lazygit
 
     vesktop
 

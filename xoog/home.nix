@@ -1,7 +1,6 @@
 {
   pkgs,
   inputs,
-  hyprland,
   ...
 }: let
   toggle = program: service: let
@@ -15,17 +14,12 @@ in {
   home.packages = with pkgs;
     import ../config/home-packages.nix pkgs inputs
     ++ [
-      _1password
-      _1password-gui
-
       gnome-tweaks
 
       easyeffects
       obs-studio
 
       firefox
-
-      modrinth-app
 
       grimblast
 
@@ -76,6 +70,8 @@ in {
     settings = {
       "$mod" = "SUPER";
 
+      xwayland.force_zero_scaling = true;
+
       monitor = [
         "DP-1, preferred, 0x0, 2"
         "HDMI-A-1, preferred, 1920x0, 1"
@@ -85,7 +81,7 @@ in {
         [
           "$mod, B, exec, firefox"
           ", Print, exec, grimblast --notify copysave area"
-          "$mod, C, exec, kitty"
+          "$mod, C, exec, ghostty"
           "$mod SHIFT, E, exec, pkill hyprland"
           "$mod, Q, killactive,"
           "$mod, F, fullscreen,"
@@ -124,6 +120,11 @@ in {
             9)
         );
 
+      bindm = [
+        "$mod, mouse:272, movewindow"
+        "$mod, mouse:273, resizewindow"
+      ];
+
       input = {
         force_no_accel = true;
       };
@@ -142,8 +143,12 @@ in {
       general.allow_tearing = true;
       windowrulev2 = [
         "immediate, class:^(cs2)$"
-        "immediate, class:(Overwatch.exe)"
+        "immediate, title:(Overwatch)"
         "immediate, class:^(Minecraft)"
+        "immediate, class:^(Lunar Client)"
+        "float, title:^(Picture-in-Picture|Firefox)$"
+        "size 800 450, title:^(Picture-in-Picture|Firefox)$"
+        "pin, title:^(Picture-in-Picture|Firefox)$"
       ];
     };
   };
