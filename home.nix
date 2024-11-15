@@ -143,10 +143,36 @@
         };
       };
     };
+
+    mpv = {
+      enable = true;
+      catppuccin.enable = false;
+      scripts = builtins.attrValues {
+        inherit
+          (pkgs.mpvScripts)
+          sponsorblock
+          thumbfast
+          mpv-webm
+          uosc
+          ;
+      };
+      bindings = {
+        "ALT+k" = "add sub-scale +0.1";
+        "ALT+j" = "add sub-scale -0.1";
+      };
+      config = {
+        sub-border-style = "background-box";
+        sub-back-color = "#00000044"; # Transparent background for the blur effect
+        sub-blur = "3"; # Adjust blur amount as needed
+        sub-margin-y = "36"; # Margin from bottom of screen
+      };
+    };
   };
 
   catppuccin.enable = true;
   catppuccin.flavor = "mocha";
+
+  gtk.catppuccin.enable = true;
 
   home.shellAliases = {
     search = "fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}' | xargs nvim";
