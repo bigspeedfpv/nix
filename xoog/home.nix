@@ -27,6 +27,7 @@ in {
       heroic
 
       jetbrains-toolbox
+      lunar-client
 
       inputs.ghostty.packages.${system}.default
     ];

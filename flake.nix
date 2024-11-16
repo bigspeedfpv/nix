@@ -37,6 +37,8 @@
 
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    weup.url = "git+ssh://git@github.com/bigspeedfpv/weup";
   };
 
   outputs = inputs @ {

@@ -18,5 +18,6 @@
 
   environment.pathsToLink = ["/share/bash-completion"];
 
+  nix.channel.enable = false;
   nixpkgs.config.allowUnfree = true;
 }

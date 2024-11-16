@@ -40,8 +40,9 @@ in
     gitAndTools.gh
 
     modrinth
-    lunar-client
     prismlauncher
+
+    moonlight-qt
 
     lazygit
 
