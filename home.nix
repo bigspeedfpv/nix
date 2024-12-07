@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }: {
   home.stateVersion = "23.11";
@@ -177,12 +178,5 @@
     search = "fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}' | xargs nvim";
     ll = "eza -l -g --icons --git --group-directories-first";
     lla = "eza -1 --icons --tree --git-ignore";
-  };
-
-  xdg.configFile = {
-    nvim = {
-      source = ./dots/nvim;
-      recursive = true;
-    };
   };
 }
