@@ -12,14 +12,14 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_6_11;
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
 
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd" "v4l2loopback"];
   boot.extraModulePackages = [config.boot.kernelPackages.v4l2loopback];
   boot.extraModprobeConfig = ''
-    options v4l2loopback exclusive_caps=1
+    options v4l2loopback exclusive_caps=1 devices=2
   '';
 
   fileSystems."/" = {
@@ -64,4 +64,7 @@
     open = false;
     nvidiaSettings = true;
   };
+
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
 }

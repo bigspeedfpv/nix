@@ -2,7 +2,7 @@
   description = "Example Darwin system flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs";
 
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -39,6 +39,8 @@
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     weup.url = "git+ssh://git@github.com/bigspeedfpv/weup";
+
+    nix-flatpak.url = "https://flakehub.com/f/gmodena/nix-flatpak/0.5.0.tar.gz";
   };
 
   outputs = inputs @ {
@@ -50,6 +52,7 @@
     nix-index-database,
     lanzaboote,
     spicetify-nix,
+    nix-flatpak,
     ...
   }: {
     nixosConfigurations = {
@@ -76,6 +79,7 @@
                 catppuccin.homeManagerModules.catppuccin
                 nix-index-database.hmModules.nix-index
                 spicetify-nix.homeManagerModules.default
+                nix-flatpak.homeManagerModules.nix-flatpak
               ];
             };
           }

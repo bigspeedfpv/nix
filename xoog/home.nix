@@ -74,8 +74,8 @@ in {
       xwayland.force_zero_scaling = true;
 
       monitor = [
-        "DP-1, preferred, 0x0, 2"
-        "HDMI-A-1, preferred, 1920x0, 1"
+        "DP-3, preferred, 0x0, 2"
+        "DP-1, preferred, 1920x0, 1, vrr, 1"
       ];
 
       bind =
@@ -134,11 +134,27 @@ in {
         no_hardware_cursors = true;
       };
 
+      workspace = builtins.concatLists (builtins.genList (
+          i: let
+            ws = i + 1;
+            isEven = num: (pkgs.lib.mod num 2) == 0;
+            display =
+              if isEven ws
+              then "DP-3"
+              else "DP-1";
+          in [
+            "${toString ws}, monitor:${display}"
+          ]
+        )
+        9);
+
       env = [
         "LIBVA_DRIVER_NAME,nvidia"
         "XDG_SESSION_TYPE,wayland"
         "GBM_BACKEND,nvidia-drm"
         "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+        "__GL_GSYNC_ALLOWED,1"
+        "__GL_VRR_ALLOWED,1"
       ];
 
       general.allow_tearing = true;
@@ -147,10 +163,15 @@ in {
         "immediate, title:(Overwatch)"
         "immediate, class:^(Minecraft)"
         "immediate, class:^(Lunar Client)"
+        "immediate, class:^(velocidrone)"
         "float, title:^(Picture-in-Picture|Firefox)$"
         "size 800 450, title:^(Picture-in-Picture|Firefox)$"
         "pin, title:^(Picture-in-Picture|Firefox)$"
       ];
+
+      misc = {
+        vrr = 1;
+      };
     };
   };
 
@@ -170,4 +191,26 @@ in {
       ];
     };
   };
+
+  services.flatpak = {
+    remotes = pkgs.lib.mkOptionDefault [
+      {
+        name = "flathub-beta";
+        location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
+      }
+    ];
+
+    packages = [
+      {
+        appId = "org.gimp.GIMP";
+        origin = "flathub-beta";
+      }
+      {
+        flatpakref = "https://sober.vinegarhq.org/sober.flatpakref";
+        sha256 = "1pj8y1xhiwgbnhrr3yr3ybpfis9slrl73i0b1lc9q89vhip6ym2l";
+      }
+    ];
+  };
+
+  fonts.fontconfig.enable = true;
 }

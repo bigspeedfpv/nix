@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   pkgs,
   inputs,
@@ -58,12 +57,17 @@
       lutris
       wineWowPackages.stable
       sbctl
+      v4l-utils
+      xclip
     ]
     ++ (with gnomeExtensions; [
       blur-my-shell
     ]);
 
-  services.pipewire.pulse.enable = true;
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+  };
 
   services.tailscale = {
     enable = true;
@@ -77,10 +81,12 @@
     settings.KbdInteractiveAuthentication = false;
   };
 
-  services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
+  services = {
+    xserver.enable = true;
+    xserver.displayManager = {
+      gdm.enable = true;
+      defaultSession = "hyprland";
+    };
   };
 
   services.sunshine = {
@@ -90,6 +96,10 @@
     capSysAdmin = true;
     openFirewall = true;
   };
+
+  services.flatpak.enable = true;
+
+  services.blueman.enable = true;
 
   environment.gnome.excludePackages = with pkgs; [
     gnome-photos

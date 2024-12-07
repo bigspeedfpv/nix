@@ -179,4 +179,11 @@
     ll = "eza -l -g --icons --git --group-directories-first";
     lla = "eza -1 --icons --tree --git-ignore";
   };
+
+  # xdg.configFile = {
+  #   nvim = {
+  #     source = ./dots/nvim;
+  #     recursive = true;
+  #   };
+  # };
 }
