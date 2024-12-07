@@ -15,6 +15,7 @@
   };
 
   programs.fish.enable = true;
+  programs.zsh.enable = true;
 
   environment.pathsToLink = ["/share/bash-completion"];
 

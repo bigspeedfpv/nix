@@ -8,10 +8,8 @@
   programs = {
     home-manager.enable = true;
 
-    fish = {
-      enable = true;
-    };
-
+    fish.enable = true;
+    zsh.enable = true;
     bash.enable = true;
 
     nix-index-database.comma.enable = true;
@@ -38,6 +36,7 @@
     zoxide = {
       enable = true;
       enableBashIntegration = true;
+      enableZshIntegration = true;
       enableFishIntegration = true;
     };
 

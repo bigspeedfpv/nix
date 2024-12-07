@@ -18,6 +18,6 @@
 
   # since users.users.andy is bad in nix-darwin, country girls make do <3
   system.activationScripts.preUserActivation.text = ''
-    sudo dscl . -create /Users/andy UserShell /run/current-system/sw/bin/fish
+    sudo dscl . -create /Users/andy UserShell /etc/profiles/per-user/andy/bin/fish
   '';
 }
