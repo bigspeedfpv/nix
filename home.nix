@@ -180,10 +180,10 @@
     lla = "eza -1 --icons --tree --git-ignore";
   };
 
-  # xdg.configFile = {
-  #   nvim = {
-  #     source = ./dots/nvim;
-  #     recursive = true;
-  #   };
-  # };
+  xdg.configFile = {
+    nvim = {
+      source = ./dots/nvim;
+      recursive = true;
+    };
+  };
 }
