@@ -24,7 +24,7 @@ with pkgs; [
 
   lazygit
 
-  (discord.override {
+  (discord-canary.override {
     withVencord = true;
   })
   vesktop

@@ -73,6 +73,10 @@ in {
 
       xwayland.force_zero_scaling = true;
 
+      exec-once = [
+        "clipse -listen"
+      ];
+
       monitor = [
         "DP-3, preferred, 0x0, 2"
         "DP-1, preferred, 1920x0, 1, vrr, 1"
@@ -106,6 +110,8 @@ in {
           "$mod SHIFT ALT, l, movecurrentworkspacetomonitor, r"
 
           "$mod, SPACE, exec, ${toggle "anyrun" true}"
+
+          "$mod, V, exec, ghostty --class clipse -e clipse"
         ]
         ++ (
           # workspaces
@@ -167,6 +173,8 @@ in {
         "float, title:^(Picture-in-Picture|Firefox)$"
         "size 800 450, title:^(Picture-in-Picture|Firefox)$"
         "pin, title:^(Picture-in-Picture|Firefox)$"
+        "float, class:(clipse)"
+        "size 622 652, class:(clipse)"
       ];
 
       misc = {

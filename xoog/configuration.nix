@@ -58,7 +58,8 @@
       wineWowPackages.stable
       sbctl
       v4l-utils
-      xclip
+      clipse
+      wl-clipboard
     ]
     ++ (with gnomeExtensions; [
       blur-my-shell
