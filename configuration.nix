@@ -21,4 +21,12 @@
 
   nix.channel.enable = false;
   nixpkgs.config.allowUnfree = true;
+
+  nix.gc = {
+    automatic = true;
+    dates = "daily";
+    options = "--delete-older-than 7d";
+  };
+
+  nix.optimise.automatic = true;
 }

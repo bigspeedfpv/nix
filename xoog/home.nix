@@ -15,6 +15,7 @@ in {
     import ../config/home-packages.nix pkgs inputs
     ++ [
       gnome-tweaks
+      ranger
 
       easyeffects
       obs-studio
@@ -179,6 +180,22 @@ in {
 
       misc = {
         vrr = 1;
+      };
+
+      animations = {
+        enabled = true;
+
+        bezier = [
+          "b, 0.10, 0.9, 0.1, 1.05"
+        ];
+
+        animation = [
+          "windows, 1, 3, b, slide"
+          "windowsOut, 1, 3, b, slide"
+          "border, 1, 6, default"
+          "fade, 1, 4, default"
+          "workspaces, 1, 4, default"
+        ];
       };
     };
   };
