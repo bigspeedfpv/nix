@@ -24,6 +24,8 @@ with pkgs; [
 
   lazygit
 
+  obsidian
+
   (discord-canary.override {
     withVencord = true;
   })
@@ -31,9 +33,12 @@ with pkgs; [
 
   r2modman
 
+  bash-language-server
   lua-language-server
 
   nerd-fonts.symbols-only
+
+  imagemagick
 
   inputs.fh.packages.${system}.default
 ]

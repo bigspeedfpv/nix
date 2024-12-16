@@ -68,13 +68,15 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     settings = {
       "$mod" = "SUPER";
 
       xwayland.force_zero_scaling = true;
 
       exec-once = [
+        "hyprpaper"
+        "systemctl --user enable --now hyprpolkitagent.service"
         "clipse -listen"
       ];
 
@@ -106,6 +108,8 @@ in {
 
           "$mod ALT, h, focusmonitor, l"
           "$mod ALT, l, focusmonitor, r"
+
+          "$mod, o, setprop, active opaque toggle"
 
           "$mod SHIFT ALT, h, movecurrentworkspacetomonitor, l"
           "$mod SHIFT ALT, l, movecurrentworkspacetomonitor, r"
@@ -166,7 +170,9 @@ in {
 
       general.allow_tearing = true;
       windowrulev2 = [
+        "opaque, title:(.*YouTube.*)"
         "immediate, class:^(cs2)$"
+        "immediate, title:^(Marvel Rivals)"
         "immediate, title:(Overwatch)"
         "immediate, class:^(Minecraft)"
         "immediate, class:^(Lunar Client)"
@@ -197,6 +203,29 @@ in {
           "workspaces, 1, 4, default"
         ];
       };
+
+      decoration = {
+        rounding = 4;
+        active_opacity = 0.9;
+        inactive_opacity = 0.9;
+        blur = {
+          enabled = true;
+          size = 12;
+          passes = 3;
+          popups = true;
+          input_methods = true;
+        };
+      };
+    };
+  };
+
+  services.hyprpaper = {
+    enable = true;
+    package = inputs.hyprpaper.packages.${pkgs.system}.hyprpaper;
+    settings = {
+      ipc = "on";
+      preload = "/home/andy/Pictures/wallpaper.png";
+      wallpaper = ", /home/andy/Pictures/wallpaper.png";
     };
   };
 

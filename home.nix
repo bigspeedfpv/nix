@@ -167,6 +167,10 @@
         sub-margin-y = "36"; # Margin from bottom of screen
       };
     };
+
+    feh = {
+      enable = true;
+    };
   };
 
   catppuccin.enable = true;
@@ -175,6 +179,7 @@
   gtk.catppuccin.enable = true;
 
   home.shellAliases = {
+    icat = "kitten icat";
     search = "fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}' | xargs nvim";
     ll = "eza -l -g --icons --git --group-directories-first";
     lla = "eza -1 --icons --tree --git-ignore";

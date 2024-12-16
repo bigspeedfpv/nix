@@ -60,6 +60,8 @@
       v4l-utils
       clipse
       wl-clipboard
+      hyprpolkitagent
+      inputs.hyprpaper.packages.${pkgs.system}.hyprpaper
     ]
     ++ (with gnomeExtensions; [
       blur-my-shell
@@ -151,13 +153,13 @@
 
   programs.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
   };
 
   xdg.portal = {
     enable = true;
-    extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    extraPortals = [pkgs.xdg-desktop-portal-gtk inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland];
   };
 
   nix.settings = {
@@ -173,4 +175,6 @@
     allowedTCPPorts = [25565];
     allowedUDPPorts = [4445];
   };
+
+  networking.networkmanager.enable = true;
 }
