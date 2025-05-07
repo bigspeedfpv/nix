@@ -21,9 +21,6 @@
 
     catppuccin.url = "github:catppuccin/nix";
 
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprland.inputs.nixpkgs.follows = "nixpkgs";
-
     hyprpaper.url = "github:hyprwm/hyprpaper";
     hyprpaper.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -33,17 +30,15 @@
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
-    lanzaboote.url = "github:nix-community/lanzaboote/v0.4.1";
+    lanzaboote.url = "github:nix-community/lanzaboote";
     lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
-
-    ghostty.url = "git+ssh://git@github.com/ghostty-org/ghostty";
 
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    weup.url = "git+ssh://git@github.com/bigspeedfpv/weup";
-
     nix-flatpak.url = "https://flakehub.com/f/gmodena/nix-flatpak/0.5.0.tar.gz";
+
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
   outputs = inputs @ {
@@ -79,7 +74,38 @@
               imports = [
                 ./home.nix
                 ./xoog/home.nix
-                catppuccin.homeManagerModules.catppuccin
+                catppuccin.homeModules.catppuccin
+                nix-index-database.hmModules.nix-index
+                spicetify-nix.homeManagerModules.default
+                nix-flatpak.homeManagerModules.nix-flatpak
+              ];
+            };
+          }
+        ];
+        specialArgs = {inherit inputs;};
+      };
+
+      pibble = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./configuration.nix
+          ./pibble/configuration.nix
+          agenix.nixosModules.default
+          catppuccin.nixosModules.catppuccin
+          lanzaboote.nixosModules.lanzaboote
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.backupFileExtension = "backup";
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {
+              inherit inputs;
+            };
+            home-manager.users.andy = {
+              imports = [
+                ./home.nix
+                ./pibble/home.nix
+                catppuccin.homeModules.catppuccin
                 nix-index-database.hmModules.nix-index
                 spicetify-nix.homeManagerModules.default
                 nix-flatpak.homeManagerModules.nix-flatpak
@@ -110,7 +136,7 @@
               imports = [
                 ./home.nix
                 ./darwin/home.nix
-                catppuccin.homeManagerModules.catppuccin
+                catppuccin.homeModules.catppuccin
                 nix-index-database.hmModules.nix-index
                 spicetify-nix.homeManagerModules.default
               ];

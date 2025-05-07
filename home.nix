@@ -20,12 +20,17 @@
     kitty = {
       enable = true;
 
-      extraConfig = ''
-        font_family Comic Code Semibold
-        bold_font Comic Code Bold
-        italic_font Comic Code Italic
-        bold_italic_font Comic Code Bold Italic
-      '';
+      settings.font_family = "Comic Code Semibold";
+      settings.bold_font = "Comic Code Bold";
+      settings.italic_font = "Comic Code Italic";
+      settings.bold_italic_font = "Comic Code Bold Italic";
+
+      settings.map = builtins.concatStringsSep "\n" (builtins.concatLists (builtins.genList (
+          i: [
+            "map alt+${toString i} goto_tab ${toString i}"
+          ]
+        )
+        9));
 
       shellIntegration = {
         enableBashIntegration = true;
@@ -146,7 +151,6 @@
 
     mpv = {
       enable = true;
-      catppuccin.enable = false;
       scripts = builtins.attrValues {
         inherit
           (pkgs.mpvScripts)
@@ -173,15 +177,21 @@
     };
   };
 
-  catppuccin.enable = true;
-  catppuccin.flavor = "mocha";
-
-  gtk.catppuccin.enable = true;
+  catppuccin = {
+    enable = true;
+    flavor = "mocha";
+    mako.enable = false;
+    waybar.enable = true;
+    gtk.enable = true;
+    mpv.enable = false;
+  };
 
   home.shellAliases = {
     icat = "kitten icat";
     search = "fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}' | xargs nvim";
     ll = "eza -l -g --icons --git --group-directories-first";
     lla = "eza -1 --icons --tree --git-ignore";
+    dev = "nix develop --command fish";
+    devimpure = "nix develop --impure --command fish";
   };
 }

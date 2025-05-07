@@ -6,7 +6,5 @@ with pkgs; [
   neovim
   killall
 
-  inputs.agenix.packages."${system}".default
   inputs.alejandra.defaultPackage.${system}
-  inputs.weup.packages.${system}.default
 ]

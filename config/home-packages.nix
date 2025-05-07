@@ -17,19 +17,13 @@ with pkgs; [
   gitAndTools.git
   gitAndTools.gh
 
-  modrinth-app
   prismlauncher
 
-  moonlight-qt
-
   lazygit
-
-  obsidian
 
   (discord-canary.override {
     withVencord = true;
   })
-  vesktop
 
   r2modman
 
